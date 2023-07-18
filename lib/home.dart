@@ -16,7 +16,7 @@ class _homepageState extends State<homepage> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'ثبت نام',
+            'ثبت نام در اپلیکشن',
             style: TextStyle(
                 color: Colors.amber, fontSize: 20, fontFamily: "Vazir"),
           ),
@@ -47,7 +47,25 @@ class _homepageState extends State<homepage> {
           ],
         ),
         bottomNavigationBar: MyAppNavigator(),
+        floatingActionButton: FloatingActionButton(
+            onPressed: newFn,
+            backgroundColor: Colors.redAccent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text("جدید"),
+                Icon(
+                  Icons.add_moderator_sharp,
+                  size: 20,
+                )
+              ],
+            )),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
   }
+}
+
+void newFn() {
+  print("We can manage this button here easily");
 }
