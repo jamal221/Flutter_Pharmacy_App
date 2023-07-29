@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'MyAppNavigator.dart';
-import 'RegBlooodResult.dart';
+import 'home.dart';
 
-class homepage extends StatefulWidget {
-  const homepage({super.key});
-
+class RegBloodResult extends StatefulWidget {
+  const RegBloodResult({super.key});
   @override
-  State<homepage> createState() => _homepageState();
+  State<RegBloodResult> createState() => _RegBloodResultState();
 }
 
-class _homepageState extends State<homepage> {
+class _RegBloodResultState extends State<RegBloodResult> {
+  TextEditingController _suger = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,63 +17,59 @@ class _homepageState extends State<homepage> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'اپلیکشن تحلیل آزمایش خون',
+            'لطفا مقادیر زیر را به طور کامل پر کنید.',
             style: TextStyle(
                 color: Colors.amber, fontSize: 20, fontFamily: "Vazir"),
           ),
-          leading: const Icon(
-            Icons.arrow_back_ios_sharp,
+          leading: IconButton(
+            onPressed: () {
+              // print("Try to use as back buttom");
+              // Navigator.pop(context, true);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const homepage()),
+              );
+            },
+            icon: Icon(Icons.arrow_back),
             color: Colors.amber,
           ),
           elevation: 0,
           centerTitle: true,
           backgroundColor: const Color.fromARGB(12, 15, 15, 6),
-          actions: <Widget>[
-            IconButton(
-                onPressed: () {
-                  print("this is me first application");
-                },
-                icon: const Icon(
-                  Icons.map,
-                  color: Colors.green,
-                )),
-            IconButton(
-                onPressed: () {
-                  print("this is my second application");
-                },
-                icon: const Icon(
-                  Icons.show_chart,
-                  color: Color.fromARGB(255, 47, 26, 212),
-                ))
-          ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.count(
-            crossAxisCount: 2,
-            crossAxisSpacing: 5,
-            mainAxisSpacing: 5,
-            children: List.generate(4, (int position) {
-              return GeneratedItems();
-            }),
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 200,
+                    padding: EdgeInsets.only(right: 5, top: 5),
+                    child: TextFormField(
+                      controller: _suger,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Suger",
+                          labelText: "Suger Value"),
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
         bottomNavigationBar: MyAppNavigator(),
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const RegBloodResult()),
-              // );
-              runApp(MaterialApp(home: RegBloodResult()));
-            },
+            onPressed: newFn,
             backgroundColor: Colors.black,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text("جدید"),
+                // Text("بررسی آزمایش"),
                 Icon(
-                  Icons.add_moderator_sharp,
+                  Icons.vaccines,
                   size: 20,
                 )
               ],
@@ -84,11 +80,9 @@ class _homepageState extends State<homepage> {
   }
 }
 
-// Widget newFn(BuildContext context) {
-//   // print("We can manage this button here easily");
-//   return new Navigator.push(
-//       context, MaterialPageRoute(builder: (context) => RegBloodResult()));
-// }
+void newFn() {
+  print("We can manage this button here easily");
+}
 
 Card GeneratedItems() {
   return Card(
