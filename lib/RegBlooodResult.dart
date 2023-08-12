@@ -16,7 +16,12 @@ class _RegBloodResultState extends State<RegBloodResult> {
   TextEditingController _creatin = TextEditingController();
   TextEditingController _chol = TextEditingController();
   TextEditingController _trig = TextEditingController();
-  String _msgfinal = '';
+  String _msgfinal_suger = '';
+  String _msgfinal_urea = '';
+  String _msgfinal_bun = '';
+  String _msgfinal_creatin = '';
+  String _msgfinal_chol = '';
+  String _msgfinal_trig = '';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -360,7 +365,124 @@ class _RegBloodResultState extends State<RegBloodResult> {
               ),
             ),
             Container(
-              child: Text(_msgfinal),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text('Suger Result:  ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: "Vazir")),
+                          Text(_msgfinal_suger,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 4, 4),
+                                  fontSize: 12,
+                                  fontFamily: "Vazir")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text('Urea Result:  ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: "Vazir")),
+                          Text(_msgfinal_urea,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 4, 4),
+                                  fontSize: 12,
+                                  fontFamily: "Vazir")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text('BUN Result:  ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: "Vazir")),
+                          Text(_msgfinal_bun,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 4, 4),
+                                  fontSize: 12,
+                                  fontFamily: "Vazir")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text('Creatinic Result:  ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: "Vazir")),
+                          Text(_msgfinal_creatin,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 4, 4),
+                                  fontSize: 12,
+                                  fontFamily: "Vazir")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text('Total Cholestrol Result:  ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: "Vazir")),
+                          Text(_msgfinal_chol,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 4, 4),
+                                  fontSize: 12,
+                                  fontFamily: "Vazir")),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text('Triglycerides Result:  ',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                  fontFamily: "Vazir")),
+                          Text(_msgfinal_trig,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 236, 4, 4),
+                                  fontSize: 12,
+                                  fontFamily: "Vazir")),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
@@ -368,9 +490,63 @@ class _RegBloodResultState extends State<RegBloodResult> {
         floatingActionButton: FloatingActionButton(
             onPressed: () {
               var newSuger = int.parse(_suger.text);
-              if (newSuger > 250) {
+              if (newSuger > 125) {
                 setState(() {
-                  _msgfinal = "You have many problem. please leave cocka";
+                  _msgfinal_suger = "You have many problem. please leave cocka";
+                });
+              } else {
+                setState(() {
+                  _msgfinal_suger = "no problem";
+                });
+              }
+              var newurea = int.parse(_urea.text);
+              if (newurea > 45 || newurea < 12) {
+                setState(() {
+                  _msgfinal_urea = "You have problem in Urea";
+                });
+              } else {
+                setState(() {
+                  _msgfinal_urea = "no problem";
+                });
+              }
+              var newbun = int.parse(_bun.text);
+              if (newbun > 21 || newbun < 5.6) {
+                setState(() {
+                  _msgfinal_bun = "You have problem in BUN";
+                });
+              } else {
+                setState(() {
+                  _msgfinal_bun = "no problem";
+                });
+              }
+              var newcr = int.parse(_creatin.text);
+              if (newcr > 1.4 || newcr < 0.5) {
+                setState(() {
+                  _msgfinal_creatin = "You have problem in Creatin budy";
+                });
+              } else {
+                setState(() {
+                  _msgfinal_creatin = "no problem";
+                });
+              }
+              var newchol = int.parse(_chol.text);
+              if (newchol > 1.4 || newchol < 0.5) {
+                setState(() {
+                  _msgfinal_chol = "You have problem in Cholestrol";
+                });
+              } else {
+                setState(() {
+                  _msgfinal_chol = "no problem";
+                });
+              }
+              var newtrig = int.parse(_trig.text);
+              if (newtrig > 1.4 || newtrig < 0.5) {
+                setState(() {
+                  _msgfinal_trig = "You have problem in your Triglycerides";
+                });
+              } else {
+                setState(() {
+                  _msgfinal_trig = "no problem";
                 });
               }
             },
